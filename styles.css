@@ -1,0 +1,733 @@
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header Animals */
+.header-animal {
+    position: absolute;
+    top: 10px;
+    opacity: 0.8;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.header-animal:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.left-animals {
+    left: 10px;
+}
+
+.right-animals {
+    right: 10px;
+}
+
+/* Subtle animations */
+.pony {
+    animation: gentle-sway 4s ease-in-out infinite;
+}
+
+.kitty-rider {
+    animation: rider-bounce 3s ease-in-out infinite;
+}
+
+.playful-kitty {
+    animation: kitty-play 5s ease-in-out infinite;
+}
+
+.nuzzling-pony {
+    animation: pony-nuzzle 4s ease-in-out infinite;
+}
+
+/* Hover effects */
+.header-animal:hover .pony {
+    animation: happy-jump 0.5s ease;
+}
+
+.header-animal:hover .playful-kitty {
+    animation: excited-wiggle 0.5s ease;
+}
+
+@keyframes happy-jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes excited-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+}
+
+@keyframes gentle-sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+}
+
+@keyframes rider-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+@keyframes kitty-play {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+@keyframes pony-nuzzle {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-5px); }
+}
+
+.header h1 {
+    margin: 0;
+    color: #2d3748;
+    font-size: 2.5em;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+}
+
+.subtitle {
+    color: #718096;
+    font-size: 1.1em;
+    margin: 10px 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.progress-summary {
+    font-size: 1.2em;
+    color: #4a5568;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+}
+
+.progress-summary .separator {
+    margin: 0 15px;
+    color: #cbd5e0;
+}
+
+/* Main Container */
+.spreadsheet-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th {
+    background-color: #f7fafc;
+    border-bottom: 2px solid #e2e8f0;
+    padding: 15px 10px;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3748;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+td {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 10px;
+    color: #4a5568;
+    transition: all 0.2s ease;
+}
+
+tr:hover td {
+    background-color: #f7fafc;
+}
+
+/* Week Type Styling */
+.recovery-row td {
+    background-color: #f0fdf4 !important;
+}
+
+.peak-row td {
+    background-color: #fef3c7 !important;
+}
+
+.establish-row td {
+    background-color: #ede9fe !important;
+}
+
+/* Cell Styling */
+.checkbox-cell {
+    text-align: center;
+}
+
+.week-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.week-label {
+    font-weight: 600;
+    color: #5a67d8;
+}
+
+.run-cell {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.run-cell:hover {
+    background-color: #edf2f7 !important;
+    transform: translateY(-1px);
+}
+
+.run-cell.completed {
+    background-color: #c6f6d5 !important;
+    color: #22543d;
+    font-weight: 500;
+}
+
+.run-cell.completed::after {
+    content: " ✓";
+    color: #22c55e;
+    font-weight: bold;
+}
+
+.pickup-workout {
+    color: #dc2626;
+    font-weight: 500;
+}
+
+.optional {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Legend */
+.legend {
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    padding: 15px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+}
+
+.recovery-legend { background-color: #f0fdf4; }
+.peak-legend { background-color: #fef3c7; }
+.establish-legend { background-color: #ede9fe; }
+.pickup-legend { background-color: #fee2e2; }
+.completed-legend { background-color: #c6f6d5; }
+
+/* Buttons */
+.button-section {
+    margin-top: 25px;
+    text-align: center;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #5a67d8;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #4c51bf;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(90, 103, 216, 0.3);
+}
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-secondary:hover {
+    background-color: #cbd5e0;
+}
+
+/* Message */
+.message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.message.show {
+    opacity: 1;
+}
+
+.message.success {
+    color: #22c55e;
+}
+
+.message.info {
+    color: #3b82f6;
+}
+
+/* Celebration Otter Modal */
+.celebration-otter-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.celebration-otter-modal.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.celebration-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-width: 300px;
+}
+
+/* Cheering otter styles */
+.cheering-otter {
+    display: inline-block;
+    animation: bounce-excitement 0.6s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes bounce-excitement {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.05); }
+}
+
+/* Cheering arms animation */
+.left-cheer-arm {
+    transform-origin: 35px 70px;
+    animation: cheer-left 0.4s ease-in-out infinite;
+}
+
+.right-cheer-arm {
+    transform-origin: 85px 70px;
+    animation: cheer-right 0.4s ease-in-out infinite;
+    animation-delay: 0.1s;
+}
+
+@keyframes cheer-left {
+    0%, 100% { transform: rotate(-10deg) translateY(0); }
+    25% { transform: rotate(-30deg) translateY(-5px); }
+    50% { transform: rotate(-40deg) translateY(-8px); }
+    75% { transform: rotate(-30deg) translateY(-5px); }
+}
+
+@keyframes cheer-right {
+    0%, 100% { transform: rotate(10deg) translateY(0); }
+    25% { transform: rotate(30deg) translateY(-5px); }
+    50% { transform: rotate(40deg) translateY(-8px); }
+    75% { transform: rotate(30deg) translateY(-5px); }
+}
+
+/* Mouth animation */
+.otter-mouth {
+    transform-origin: 60px 56px;
+}
+
+.otter-mouth ellipse {
+    animation: cheer-mouth-open 0.4s ease-in-out infinite;
+}
+
+.otter-mouth path {
+    animation: cheer-tongue 0.4s ease-in-out infinite;
+}
+
+@keyframes cheer-mouth-open {
+    0%, 100% { 
+        ry: 3px;
+        rx: 8px;
+    }
+    50% { 
+        ry: 10px;
+        rx: 14px;
+    }
+}
+
+@keyframes cheer-tongue {
+    0%, 100% { 
+        opacity: 0;
+        transform: scaleY(0.5);
+    }
+    50% { 
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.celebration-content h2 {
+    color: #5a67d8;
+    margin: 20px 0 10px;
+    font-size: 2em;
+}
+
+.celebration-content p {
+    color: #4a5568;
+    font-size: 1.2em;
+}
+
+/* Excitement stars animation */
+.excitement-star {
+    animation: twinkle 1s ease-in-out infinite;
+}
+
+.excitement-star.star-2 {
+    animation-delay: 0.3s;
+}
+
+.excitement-star.star-3 {
+    animation-delay: 0.6s;
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Confetti animation */
+.confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.confetti::before,
+.confetti::after {
+    content: '';
+    position: absolute;
+    font-size: 30px;
+    animation: confetti-fall 3s ease-in-out infinite;
+}
+
+.confetti::before {
+    content: '🎉';
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.confetti::after {
+    content: '🎊';
+    right: 10%;
+    animation-delay: 0.5s;
+}
+
+/* Additional confetti elements */
+.confetti {
+    background-image: 
+        radial-gradient(circle, transparent 10%, rgba(255, 215, 0, 0.3) 10%, rgba(255, 215, 0, 0.3) 15%, transparent 15%),
+        radial-gradient(circle, transparent 10%, rgba(255, 105, 180, 0.3) 10%, rgba(255, 105, 180, 0.3) 15%, transparent 15%),
+        radial-gradient(circle, transparent 10%, rgba(135, 206, 235, 0.3) 10%, rgba(135, 206, 235, 0.3) 15%, transparent 15%);
+    background-size: 10% 10%, 15% 15%, 12% 12%;
+    background-position: 25% 0, 50% 0, 75% 0;
+    animation: sparkle 4s linear infinite;
+}
+
+/* Create multiple confetti pieces */
+.celebration-content::before,
+.celebration-content::after {
+    content: '✨';
+    position: absolute;
+    font-size: 25px;
+    animation: confetti-fall 3s ease-in-out infinite;
+    z-index: 10;
+}
+
+.celebration-content::before {
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.celebration-content::after {
+    content: '🌟';
+    right: 20%;
+    animation-delay: 1.5s;
+}
+
+@keyframes sparkle {
+    to {
+        background-position: 25% 100%, 50% 100%, 75% 100%;
+    }
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(300px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Animal encouragement bubbles */
+.animal-bubble {
+    position: fixed;
+    background: #5a67d8;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(10px) scale(0.8);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.animal-bubble.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.animal-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #5a67d8;
+}
+
+/* Popup Otter */
+.popup-otter {
+    position: absolute;
+    display: none;
+    z-index: 100;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.popup-otter.show {
+    display: block;
+    animation: popIn 0.4s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Waving arm animation */
+.popup-otter .waving-arm {
+    transform-origin: 60px 45px;
+    animation: wave-hello 0.8s ease-in-out infinite;
+}
+
+@keyframes wave-hello {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-30deg);
+    }
+    75% {
+        transform: rotate(30deg);
+    }
+}
+
+/* Speech bubble */
+.popup-otter .speech-bubble {
+    position: absolute;
+    bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #5a67d8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeInBubble 0.3s ease-out 0.4s forwards;
+}
+
+.popup-otter .speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+}
+
+@keyframes fadeInBubble {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hide popup otter on mobile for better UX */
+@media (max-width: 768px) {
+    .popup-otter {
+        transform: scale(0.8);
+    }
+    
+    .popup-otter .speech-bubble {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 1.8em;
+    }
+    
+    .header-animal {
+        transform: scale(0.7);
+    }
+    
+    .left-animals {
+        left: -10px;
+        top: 5px;
+    }
+    
+    .right-animals {
+        right: -10px;
+        top: 5px;
+    }
+    
+    .spreadsheet-container {
+        padding: 15px;
+    }
+    
+    table {
+        font-size: 12px;
+    }
+    
+    td, th {
+        padding: 8px 5px;
+    }
+    
+    .button-section {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .header-animal {
+        display: none;
+    }
+}

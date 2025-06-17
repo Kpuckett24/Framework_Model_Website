@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Plan Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <!-- Left side: Kitty riding pony -->
+        <div class="header-animal left-animals">
+            <svg width="100" height="80" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pony -->
+                <g class="pony">
+                    <!-- Body -->
+                    <ellipse cx="50" cy="50" rx="25" ry="18" fill="#DDA0DD" stroke="#9370DB" stroke-width="1.5"/>
+                    <!-- Head -->
+                    <ellipse cx="25" cy="40" rx="15" ry="12" fill="#DDA0DD" stroke="#9370DB" stroke-width="1.5"/>
+                    <!-- Legs -->
+                    <rect x="35" y="50" width="5" height="20" rx="2" fill="#9370DB"/>
+                    <rect x="45" y="50" width="5" height="20" rx="2" fill="#9370DB"/>
+                    <rect x="55" y="50" width="5" height="20" rx="2" fill="#9370DB"/>
+                    <rect x="65" y="50" width="5" height="20" rx="2" fill="#9370DB"/>
+                    <!-- Mane -->
+                    <path d="M 20 35 Q 15 30 20 25 Q 18 20 23 18 Q 22 15 27 15" fill="none" stroke="#FF69B4" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Tail -->
+                    <path d="M 72 48 Q 85 45 88 55 Q 85 65 75 60" fill="#FF69B4" stroke="#FF1493" stroke-width="1"/>
+                    <!-- Eye -->
+                    <circle cx="20" cy="38" r="2" fill="#000"/>
+                    <circle cx="21" cy="37" r="0.8" fill="#fff"/>
+                    <!-- Snout -->
+                    <ellipse cx="15" cy="42" rx="4" ry="3" fill="#FFB6C1"/>
+                </g>
+                
+                <!-- Kitty on top -->
+                <g class="kitty-rider">
+                    <!-- Body -->
+                    <ellipse cx="45" cy="30" rx="12" ry="10" fill="#FFE4B5" stroke="#DEB887" stroke-width="1.5"/>
+                    <!-- Head -->
+                    <circle cx="38" cy="22" r="8" fill="#FFE4B5" stroke="#DEB887" stroke-width="1.5"/>
+                    <!-- Ears -->
+                    <path d="M 32 18 L 30 13 L 35 16 Z" fill="#FFE4B5" stroke="#DEB887" stroke-width="1"/>
+                    <path d="M 41 16 L 46 13 L 44 18 Z" fill="#FFE4B5" stroke="#DEB887" stroke-width="1"/>
+                    <!-- Inner ears -->
+                    <path d="M 32.5 16 L 31.5 14 L 34 15.5 Z" fill="#FFB6C1"/>
+                    <path d="M 42 15.5 L 44.5 14 L 43.5 16 Z" fill="#FFB6C1"/>
+                    <!-- Eyes -->
+                    <circle cx="35" cy="21" r="1.5" fill="#000"/>
+                    <circle cx="41" cy="21" r="1.5" fill="#000"/>
+                    <!-- Nose -->
+                    <path d="M 38 23 L 37 24 L 39 24 Z" fill="#FF69B4"/>
+                    <!-- Mouth -->
+                    <path d="M 38 24 Q 36 25 34 24" fill="none" stroke="#000" stroke-width="0.8" stroke-linecap="round"/>
+                    <path d="M 38 24 Q 40 25 42 24" fill="none" stroke="#000" stroke-width="0.8" stroke-linecap="round"/>
+                    <!-- Tail -->
+                    <path d="M 55 30 Q 65 25 62 35" fill="none" stroke="#DEB887" stroke-width="4" stroke-linecap="round"/>
+                    <!-- Stripes -->
+                    <path d="M 30 20 Q 32 22 30 24" fill="none" stroke="#D2691E" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M 46 20 Q 44 22 46 24" fill="none" stroke="#D2691E" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M 40 28 Q 42 30 40 32" fill="none" stroke="#D2691E" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M 50 28 Q 48 30 50 32" fill="none" stroke="#D2691E" stroke-width="1.5" stroke-linecap="round"/>
+                </g>
+            </svg>
+        </div>
+        
+        <h1>🏃‍♀️ Your Running Journey</h1>
+        <p class="subtitle">8-Week Build-Up Plan • June 16 - August 10, 2025</p>
+        <div class="progress-summary">
+            <span id="weeksComplete">0</span> of 8 weeks complete
+            <span class="separator">•</span>
+            <span id="runsComplete">0</span> runs completed
+        </div>
+        
+        <!-- Right side: Kitty and pony playing -->
+        <div class="header-animal right-animals">
+            <svg width="100" height="80" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                <!-- Sitting kitty -->
+                <g class="playful-kitty">
+                    <!-- Body -->
+                    <ellipse cx="25" cy="55" rx="15" ry="18" fill="#D3D3D3" stroke="#A9A9A9" stroke-width="1.5"/>
+                    <!-- Head -->
+                    <circle cx="25" cy="35" r="12" fill="#D3D3D3" stroke="#A9A9A9" stroke-width="1.5"/>
+                    <!-- Ears -->
+                    <path d="M 15 28 L 12 20 L 20 25 Z" fill="#D3D3D3" stroke="#A9A9A9" stroke-width="1"/>
+                    <path d="M 30 25 L 38 20 L 35 28 Z" fill="#D3D3D3" stroke="#A9A9A9" stroke-width="1"/>
+                    <!-- Inner ears -->
+                    <path d="M 16 26 L 14 22 L 18.5 24.5 Z" fill="#FFB6C1"/>
+                    <path d="M 31.5 24.5 L 36 22 L 34 26 Z" fill="#FFB6C1"/>
+                    <!-- Eyes (happy) -->
+                    <path d="M 20 34 Q 22 36 24 34" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M 26 34 Q 28 36 30 34" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                    <!-- Nose -->
+                    <path d="M 25 37 L 24 38 L 26 38 Z" fill="#FF69B4"/>
+                    <!-- Tail (curved up) -->
+                    <path d="M 35 65 Q 45 60 40 45 Q 38 35 40 30" fill="none" stroke="#A9A9A9" stroke-width="6" stroke-linecap="round"/>
+                    <!-- Paw reaching out -->
+                    <ellipse cx="15" cy="50" rx="5" ry="7" fill="#D3D3D3" stroke="#A9A9A9" stroke-width="1.5" transform="rotate(-30 15 50)"/>
+                </g>
+                
+                <!-- Small pony nuzzling -->
+                <g class="nuzzling-pony">
+                    <!-- Body -->
+                    <ellipse cx="65" cy="55" rx="20" ry="15" fill="#87CEEB" stroke="#4682B4" stroke-width="1.5"/>
+                    <!-- Neck and head -->
+                    <ellipse cx="50" cy="45" rx="12" ry="10" fill="#87CEEB" stroke="#4682B4" stroke-width="1.5" transform="rotate(-20 50 45)"/>
+                    <!-- Snout (touching kitty) -->
+                    <ellipse cx="40" cy="48" rx="5" ry="4" fill="#FFB6C1"/>
+                    <!-- Legs -->
+                    <rect x="55" y="55" width="4" height="15" rx="2" fill="#4682B4"/>
+                    <rect x="63" y="55" width="4" height="15" rx="2" fill="#4682B4"/>
+                    <rect x="71" y="55" width="4" height="15" rx="2" fill="#4682B4"/>
+                    <!-- Mane -->
+                    <path d="M 48 40 Q 45 35 48 30 Q 46 25 50 23" fill="none" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+                    <!-- Eye (closed, happy) -->
+                    <path d="M 48 43 Q 50 45 52 43" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round"/>
+                    <!-- Little heart between them -->
+                    <text x="35" y="45" font-size="10" fill="#FF69B4">💕</text>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <div class="spreadsheet-container">
+        <table id="runningPlan">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">✓</th>
+                    <th style="width: 15%;">Week</th>
+                    <th style="width: 15%;">Dates</th>
+                    <th style="width: 15%;">Run 1</th>
+                    <th style="width: 15%;">Run 2</th>
+                    <th style="width: 15%;">Run 3 (Optional)</th>
+                    <th style="width: 15%;">Run 4 (Optional)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="checkbox-cell">
+                        <input type="checkbox" class="week-checkbox" data-week="1">
+                    </td>
+                    <td class="week-label">Week 1</td>
+                    <td>June 16-22</td>
+                    <td class="run-cell" data-week="1" data-run="1">30 min easy</td>
+                    <td class="run-cell" data-week="1" data-run="2">25 min easy</td>
+                    <td class="run-cell optional" data-week="1" data-run="3">35 min easy</td>
+                    <td class="run-cell optional" data-week="1" data-run="4">20 min recovery</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell">
+                        <input type="checkbox" class="week-checkbox" data-week="2">
+                    </td>
+                    <td class="week-label">Week 2</td>
+                    <td>June 23-29</td>
+                    <td class="run-cell" data-week="2" data-run="1">35 min easy</td>
+                    <td class="run-cell" data-week="2" data-run="2">30 min easy</td>
+                    <td class="run-cell optional" data-week="2" data-run="3">40 min easy</td>
+                    <td class="run-cell optional" data-week="2" data-run="4">25 min recovery</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell">
+                        <input type="checkbox" class="week-checkbox" data-week="3">
+                    </td>
+                    <td class="week-label">Week 3</td>
+                    <td>June 30 - July 6</td>
+                    <td class="run-cell" data-week="3" data-run="1">40 min easy</td>
+                    <td class="run-cell pickup-workout" data-week="3" data-run="2">30 min with 3×2 min pickups</td>
+                    <td class="run-cell optional" data-week="3" data-run="3">45 min easy</td>
+                    <td class="run-cell optional" data-week="3" data-run="4">25 min recovery</td>
+                </tr>
+                <tr class="recovery-row">
+                    <td class="checkbox-cell">
+                        <input type="checkbox" class="week-checkbox" data-week="4">
+                    </td>
+                    <td class="week-label">Week 4 (Recovery)</td>
+                    <td>July 7-13</td>
+                    <td class="run-cell" data-week="4" data-run="1">35 min easy</td>
+                    <td class="run-cell" data-week="4" data-run="2">30 min easy</td>
+                    <td class="run-cell optional" data-week="4" data-run="3">35 min easy</td>
+                    <td class="run-cell optional" data-week="4" data-run="4">20 min recovery</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell">
+                        <input type="checkbox" class="week-checkbox" data-week="5">
+                    </td>
+                    <td class="week-label">Week 5</td>
+                    <td>July 14-20</td>
+                    <td class="run-cell" data-week="5" data-run="1">45 min easy</td>
+                    <td class="run-cell pickup-workout" data-week="5" data-run="2">35 min with 4×2 min pickups</td>
+                    <td class="run-cell optional" data-week="5" data-run="3">50 min easy</td>
+                    <td class="run-cell optional" data-week="5" data-run="4">30 min recovery</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell">
+                        <input type="checkbox" class="week-checkbox" data-week="6">
+                    </td>
+                    <td class="week-label">Week 6</td>
+                    <td>July 21-27</td>
+                    <td class="run-cell" data-week="6" data-run="1">50 min easy</td>
+                    <td class="run-cell pickup-workout" data-week="6" data-run="2">40 min with 5×2 min pickups</td>
+                    <td class="run-cell optional" data-week="6" data-run="3">55 min easy</td>
+                    <td class="run-cell optional" data-week="6" data-run="4">30 min recovery</td>
+                </tr>
+                <tr class="peak-row">
+                    <td class="checkbox-cell">
+                        <input type="checkbox" class="week-checkbox" data-week="7">
+                    </td>
+                    <td class="week-label">Week 7 (Peak)</td>
+                    <td>July 28 - Aug 3</td>
+                    <td class="run-cell" data-week="7" data-run="1">55 min easy</td>
+                    <td class="run-cell pickup-workout" data-week="7" data-run="2">45 min with 6×2 min pickups</td>
+                    <td class="run-cell optional" data-week="7" data-run="3">60 min easy</td>
+                    <td class="run-cell optional" data-week="7" data-run="4">35 min recovery</td>
+                </tr>
+                <tr class="establish-row">
+                    <td class="checkbox-cell">
+                        <input type="checkbox" class="week-checkbox" data-week="8">
+                    </td>
+                    <td class="week-label">Week 8 (Establish)</td>
+                    <td>Aug 4-10</td>
+                    <td class="run-cell" data-week="8" data-run="1">50 min easy</td>
+                    <td class="run-cell pickup-workout" data-week="8" data-run="2">40 min with 4×2 min pickups</td>
+                    <td class="run-cell optional" data-week="8" data-run="3">55 min easy</td>
+                    <td class="run-cell optional" data-week="8" data-run="4">30 min recovery</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box recovery-legend"></div>
+                <span>Recovery Week</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box peak-legend"></div>
+                <span>Peak Week</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box establish-legend"></div>
+                <span>Establish Week</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box pickup-legend"></div>
+                <span>Pickup Workouts</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box completed-legend"></div>
+                <span>Completed Run</span>
+            </div>
+        </div>
+        
+        <div class="button-section">
+            <button class="btn btn-primary" onclick="copyTable()">📋 Copy for Google Sheets</button>
+            <button class="btn btn-secondary" onclick="clearProgress()">🔄 Reset Progress</button>
+        </div>
+        
+        <p id="message" class="message"></p>
+    </div>
+
+    
+    <!-- Celebration Otter (hidden by default) -->
+    <div id="celebrationOtter" class="celebration-otter-modal">
+        <div class="celebration-content">
+            <svg class="cheering-otter" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <!-- Otter body -->
+                <ellipse cx="60" cy="80" rx="35" ry="30" fill="#8B4513" stroke="#654321" stroke-width="2"/>
+                
+                <!-- Otter head -->
+                <circle cx="60" cy="45" r="25" fill="#A0522D" stroke="#654321" stroke-width="2"/>
+                
+                <!-- Ears -->
+                <circle cx="45" cy="30" r="8" fill="#8B4513"/>
+                <circle cx="75" cy="30" r="8" fill="#8B4513"/>
+                
+                <!-- Eyes -->
+                <circle cx="50" cy="42" r="4" fill="#000"/>
+                <circle cx="70" cy="42" r="4" fill="#000"/>
+                <circle cx="51" cy="41" r="1.5" fill="#fff"/>
+                <circle cx="71" cy="41" r="1.5" fill="#fff"/>
+                
+                <!-- Nose -->
+                <ellipse cx="60" cy="48" rx="4" ry="3" fill="#000"/>
+                
+                <!-- Mouth (animated) -->
+                <g class="otter-mouth">
+                    <ellipse cx="60" cy="56" rx="12" ry="8" fill="#ff6b6b" stroke="#000" stroke-width="1.5"/>
+                    <path d="M 48 56 Q 60 64 72 56" fill="#ff4757" stroke="none"/>
+                </g>
+                
+                <!-- Belly -->
+                <ellipse cx="60" cy="75" rx="20" ry="18" fill="#D2691E"/>
+                
+                <!-- Left arm (cheering) -->
+                <g class="left-cheer-arm">
+                    <ellipse cx="30" cy="60" rx="10" ry="20" fill="#8B4513" transform="rotate(-45 30 60)"/>
+                    <circle cx="20" cy="35" r="8" fill="#654321"/>
+                </g>
+                
+                <!-- Right arm (cheering) -->
+                <g class="right-cheer-arm">
+                    <ellipse cx="90" cy="60" rx="10" ry="20" fill="#8B4513" transform="rotate(45 90 60)"/>
+                    <circle cx="100" cy="35" r="8" fill="#654321"/>
+                </g>
+                
+                <!-- Tail -->
+                <ellipse cx="60" cy="100" rx="15" ry="8" fill="#654321"/>
+                
+                <!-- Whiskers -->
+                <line x1="30" y1="45" x2="15" y2="42" stroke="#000" stroke-width="1"/>
+                <line x1="30" y1="50" x2="15" y2="50" stroke="#000" stroke-width="1"/>
+                <line x1="90" y1="45" x2="105" y2="42" stroke="#000" stroke-width="1"/>
+                <line x1="90" y1="50" x2="105" y2="50" stroke="#000" stroke-width="1"/>
+                <!-- Excitement stars around head -->
+                <text x="25" y="25" font-size="12" fill="#FFD700" class="excitement-star">⭐</text>
+                <text x="90" y="25" font-size="12" fill="#FFD700" class="excitement-star star-2">⭐</text>
+                <text x="60" y="15" font-size="10" fill="#FFD700" class="excitement-star star-3">✨</text>
+            </svg>
+            <h2>Week Complete!</h2>
+            <p>All 2 mandatory runs done! You're incredible!</p>
+            <div class="confetti"></div>
+        </div>
+    </div>
+    
+    <!-- Popup Otter SVG -->
+    <div id="popupOtter" class="popup-otter">
+        <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <!-- Otter body -->
+            <ellipse cx="40" cy="50" rx="25" ry="20" fill="#8B4513" stroke="#654321" stroke-width="2"/>
+            
+            <!-- Otter head -->
+            <circle cx="40" cy="25" r="18" fill="#A0522D" stroke="#654321" stroke-width="2"/>
+            
+            <!-- Ears -->
+            <circle cx="30" cy="15" r="6" fill="#8B4513"/>
+            <circle cx="50" cy="15" r="6" fill="#8B4513"/>
+            
+            <!-- Eyes -->
+            <circle cx="35" cy="23" r="3" fill="#000"/>
+            <circle cx="45" cy="23" r="3" fill="#000"/>
+            <circle cx="36" cy="22" r="1" fill="#fff"/>
+            <circle cx="46" cy="22" r="1" fill="#fff"/>
+            
+            <!-- Nose -->
+            <ellipse cx="40" cy="28" rx="3" ry="2" fill="#000"/>
+            
+            <!-- Mouth -->
+            <path d="M 40 28 Q 35 32 30 28" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 40 28 Q 45 32 50 28" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+            
+            <!-- Belly -->
+            <ellipse cx="40" cy="48" rx="15" ry="12" fill="#D2691E"/>
+            
+            <!-- Left arm (static) -->
+            <ellipse cx="20" cy="40" rx="8" ry="15" fill="#8B4513" transform="rotate(-30 20 40)"/>
+            
+            <!-- Right arm (waving) -->
+            <g class="waving-arm">
+                <ellipse cx="60" cy="40" rx="8" ry="15" fill="#8B4513" transform="rotate(30 60 40)"/>
+                <!-- Paw -->
+                <circle cx="65" cy="30" r="6" fill="#654321"/>
+            </g>
+            
+            <!-- Tail -->
+            <ellipse cx="40" cy="65" rx="12" ry="6" fill="#654321"/>
+            
+            <!-- Whiskers -->
+            <line x1="20" y1="26" x2="10" y2="24" stroke="#000" stroke-width="1"/>
+            <line x1="20" y1="30" x2="10" y2="30" stroke="#000" stroke-width="1"/>
+            <line x1="60" y1="26" x2="70" y2="24" stroke="#000" stroke-width="1"/>
+            <line x1="60" y1="30" x2="70" y2="30" stroke="#000" stroke-width="1"/>
+        </svg>
+        <div class="speech-bubble">Great job! 🌟</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
