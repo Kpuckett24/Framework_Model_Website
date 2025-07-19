@@ -247,10 +247,14 @@ function showCelebrationOtter() {
     const messageEl = modal.querySelector('p');
     if (completedWeeks === 1) {
         messageEl.textContent = "First week done! You're off to an amazing start!";
-    } else if (completedWeeks === 4) {
+    } else if (completedWeeks === 5) {
+        messageEl.textContent = "First cutback week complete! Smart training!";
+    } else if (completedWeeks === 6) {
         messageEl.textContent = "Halfway there! You're unstoppable!";
-    } else if (completedWeeks === 8) {
-        messageEl.textContent = "YOU DID IT! 8 weeks complete! 🏆";
+    } else if (completedWeeks === 9) {
+        messageEl.textContent = "Second cutback week done! Recovery is key!";
+    } else if (completedWeeks === 12) {
+        messageEl.textContent = "YOU DID IT! 12 weeks complete! 🏆";
     } else {
         messageEl.textContent = `Week ${completedWeeks} complete! Keep crushing it!`;
     }
